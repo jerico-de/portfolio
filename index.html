@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <!-- Devicon for tech logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">JC<span class="accent">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid">
+      <!-- LEFT: Photo -->
+      <div class="hero-photo-wrap">
+        <div class="photo-ring">
+          <div class="photo-circle">
+            <!-- Replace assets/profile.jpg with your own photo -->
+            <img src="assets/profile.jpg" alt="Profile Photo" onerror="this.style.display='none';this.parentElement.classList.add('no-photo')"/>
+            <div class="photo-fallback">
+              <span>YOUR<br/>PHOTO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info -->
+      <div class="hero-info">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">Jerico<span class="accent">.</span></h1>
+        <div class="hero-role">
+          <span class="role-prefix">I'm a </span>
+          <span class="typewriter" id="typewriter"></span>
+          <span class="cursor-blink">|</span>
+        </div>
+        <p class="hero-objective">
+          A passionate developer focused on crafting efficient, user-centered digital experiences.
+          Committed to writing clean, scalable code and delivering solutions that blend strong
+          technical foundations with intuitive design — ready to contribute meaningfully to any forward-thinking team.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Get In Touch</a>
+          <a href="#projects" class="btn-outline">View Work</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background grid lines -->
+    <div class="bg-grid"></div>
+    <div class="scanline"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 — ABOUT</div>
+    <div class="section-inner">
+      <h2 class="section-title">About <span class="accent">Me</span></h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm a developer who thrives at the intersection of logic and creativity. I enjoy turning complex problems into elegant, functional solutions — whether that's architecting a backend system or fine-tuning a pixel-perfect UI. I'm detail-oriented, a fast learner, and I genuinely care about the quality of what I build.
+          </p>
+          <p>
+            Outside of code, I'm drawn to design thinking, open-source culture, and continuously picking up new tools. I believe that the best products come from developers who can think like designers — and I strive to be exactly that.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="stat-num">2+</span>
+            <span class="stat-label">Years Coding</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Projects Built</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="stack">
+    <div class="section-label">02 — TECH STACK</div>
+    <div class="section-inner">
+      <h2 class="section-title">My <span class="accent">Stack</span></h2>
+      <div class="stack-grid">
+
+        <div class="stack-item" data-name="HTML5">
+          <i class="devicon-html5-plain colored"></i>
+          <span>HTML5</span>
+        </div>
+        <div class="stack-item" data-name="CSS3">
+          <i class="devicon-css3-plain colored"></i>
+          <span>CSS3</span>
+        </div>
+        <div class="stack-item" data-name="Bootstrap">
+          <i class="devicon-bootstrap-plain colored"></i>
+          <span>Bootstrap</span>
+        </div>
+        <div class="stack-item" data-name="JavaScript">
+          <i class="devicon-javascript-plain colored"></i>
+          <span>JavaScript</span>
+        </div>
+        <div class="stack-item" data-name="Node.js">
+          <i class="devicon-nodejs-plain colored"></i>
+          <span>Node.js</span>
+        </div>
+        <div class="stack-item" data-name="React">
+          <i class="devicon-react-original colored"></i>
+          <span>React</span>
+        </div>
+        <div class="stack-item" data-name="Java">
+          <i class="devicon-java-plain colored"></i>
+          <span>Java</span>
+        </div>
+        <div class="stack-item" data-name="Github">
+          <i class="devicon-github-original"></i>
+          <span>GitHub</span>
+        </div>
+        <div class="stack-item" data-name="MySQL">
+          <i class="devicon-mysql-plain colored"></i>
+          <span>MySQL</span>
+        </div>
+        <div class="stack-item" data-name="MongoDB">
+          <i class="devicon-mongodb-plain colored"></i>
+          <span>MongoDB</span>
+        </div>
+        <div class="stack-item" data-name="Aws">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
+          <span>AWS</span>
+        </div>
+        <div class="stack-item" data-name="AndroidStudio">
+          <i class="devicon-androidstudio-plain colored"></i>
+          <span>AndroidStudio</span>
+        </div>
+        
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">03 — PROJECTS</div>
+    <div class="section-inner">
+      <h2 class="section-title">My <span class="accent">Projects</span></h2>
+      <div class="projects-grid">
+
+        <!-- PROJECT CARD — duplicate and fill in your own -->
+        <div class="project-card">
+          <div class="project-preview">
+            <!-- Replace with actual screenshot: assets/project1.jpg -->
+            <img src="assets/project1.png" alt="Project 1" onerror="this.style.display='none'"/>
+            <div class="project-preview-fallback">
+              <span class="preview-placeholder">PROJECT PREVIEW</span>
+            </div>
+            <div class="project-overlay">
+              <a href="https://jerico-de.github.io/bawz-website/" class="btn-sm" target="_blank">Live Demo</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Bawz Website</h3>
+            <p class="project-desc">Bawz is a dance team based in the Philippines. This project invovles creating a modern, 
+                responsive website to showcase the team's events, gigs, and achievements. It features a clean design, smooth animatsions, 
+                and user-friendly. It can also be used to contact the team for gig inquries and provide information about the 
+                team's activities.</p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Bootstrap</span>
+              <span>GitHub</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">
+            <img src="assets/project2.png" alt="Project 2" onerror="this.style.display='none'"/>
+            <div class="project-preview-fallback">
+              <span class="preview-placeholder">PROJECT PREVIEW</span>
+            </div>
+            <div class="project-overlay">
+              <a href="https://the-hungry-paws-website-v2.onrender.com/" class="btn-sm" target="_blank">Live Demo</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">The Hungry Paws Website</h3>
+            <span class="tl-badge">Work In Progress</span>
+            <p class="project-desc">The Hungry Paws is a one-stop shop for pet supplies, pet grooming, and pet hotel. This website provides 
+                a seamless online experience for pet owners to book for a grooming session or stay at the pet hotel. The website features a modern 
+                design, responsive layout, and has Google Authentication. Users may sign up or log in for better user experience. Pet owners may add 
+                their pet, pet information, book appointments, and monitor booking status.</p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>GitHub</span>
+              <span>Render</span>
+              <span>AWS S3</span>
+              <span>GoogleAuth</span>
+              <span>MongoDB</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">04 — EDUCATION</div>
+    <div class="section-inner">
+      <h2 class="section-title">Edu<span class="accent">cation</span></h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="tl-meta">
+              <span class="tl-year">2023 — Present</span>
+              <span class="tl-badge">College</span>
+            </div>
+            <h3 class="tl-title">Bachelor of Science in Information Technology</h3>
+            <p class="tl-sub">Mapua Malayan Digital College — Quezon City, Manila</p>
+            <p class="tl-desc">Relevant coursework: Data Structures, Web Development, Database Management, Software Engineering, UI/UX Design.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="tl-meta">
+              <span class="tl-year">2020 — 2022</span>
+              <span class="tl-badge">College</span>
+            </div>
+            <h3 class="tl-title">Bachelor of Science in Physical Therapy</h3>
+            <p class="tl-sub">Pamantasan Ng Lungsod Ng Maynila — Intramuros, Manila</p>
+            <p class="tl-desc">Studied physical therapy principles and practices.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="tl-meta">
+              <span class="tl-year">2018 — 2020</span>
+              <span class="tl-badge">Senior HighSchool</span>
+            </div>
+            <h3 class="tl-title">Science, Technology, Engineering, Mathematics (STEM)</h3>
+            <p class="tl-sub">San Beda University — Intramuros, Manila</p>
+            <p class="tl-desc">Completed senior high with a focus on ICT and science fundamentals.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-label">05 — CERTIFICATIONS</div>
+    <div class="section-inner">
+      <h2 class="section-title">Certifications</h2>
+    
+      <div class="certifications-grid">
+
+        <div class="certifications-card">
+            <div class="certifications-preview">
+                <img src="assets/cert1.jpg" alt="Certification 1" onerror="this.style.display='none'" />
+                <div class="certifications-preview-fallback">
+                    <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
+                </div>
+                <div class="certifications-overlay">
+                    <a href="#" class="btn-sm" target="_blank">View Certificate</a>
+                </div>
+            </div>
+           <div class="certifications-info">
+                <h3 class="certifications-title">Full-Stack Web Development Bootcamp</h3>
+                <span class="tl-badge">Udemy</span>
+                <p class="certifications-desc">Comprehensive course covering both frontend and backend development technologies. It also included 
+                    version control, database management, and application programming interface (API).</p>
+                <div class="certifications-tags">
+                    <span>Front-End Development</span>
+                    <span>Back-End Development</span>
+                    <span>Version Control</span>
+                    <span>Database Management</span>
+                </div>
+           </div> 
+        </div>
+
+        <div class="certifications-card">
+            <div class="certifications-preview">
+                <img src="assets/cert2.png" alt="Certification 2" onerror="this.style.display='none'" />
+                <div class="certifications-preview-fallback">
+                    <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
+                </div>
+                <div class="certifications-overlay">
+                    <a href="#" class="btn-sm" target="_blank">View Certificate</a>
+                </div>
+            </div>
+           <div class="certifications-info">
+                <h3 class="certifications-title">AWS - Cloud Foundations - Training Badge</h3>
+                <span class="tl-badge">AWS</span>
+                <p class="certifications-desc">Validated foundational knowledge of cloud concepts, services, and best practices.</p>
+                <div class="certifications-tags">
+                    <span>AWS Cloud</span>
+                    <span>AWS Core Services</span>
+                    <span>AWS Pricing</span>
+                    <span>AWS Support</span>
+                </div>
+           </div> 
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">06 — EXPERIENCE</div>
+    <div class="section-inner">
+      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="tl-meta">
+              <span class="tl-year">May 2023 - August 2023</span>
+              <span class="tl-badge">Full-time</span>
+            </div>
+            <h3 class="tl-title">Customer Service Representative</h3>
+            <p class="tl-sub">Webbeds — Mandaluyong</p>
+            <p class="tl-desc">Provided excellent customer service and support to clients, resolving their inquiries 
+                and issues in a timely manner. Maintained accurate records of all customer interactions and contributed 
+                to improving overall customer satisfaction.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="tl-meta">
+              <span class="tl-year">August 2022 — March 2023</span>
+              <span class="tl-badge">Contractual</span>
+            </div>
+            <h3 class="tl-title">Graphic Designer</h3>
+            <p class="tl-sub">The Hungry Paws — Quezon City</p>
+            <p class="tl-desc">Created visual content for marketing materials, social media, and brand identity. Collaborated 
+                with the team to develop creative solutions that aligned with the company's vision and goals.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">07 — SKILLS</div>
+    <div class="section-inner">
+      <h2 class="section-title">My <span class="accent">Skills</span></h2>
+      <div class="skills-wrap">
+
+        <div class="skill-category">
+          <h4 class="skill-cat-title">Frontend</h4>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>HTML / CSS</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>JavaScript</span><span>80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>React</span><span>70%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>Bootstrap</span><span>88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-cat-title">Backend & DB</h4>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>Node.js</span><span>78%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>Java</span><span>75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>MySQL</span><span>82%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-label"><span>MongoDB</span><span>85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4 class="skill-cat-title">Soft Skills</h4>
+          <div class="soft-skills">
+            <span>Problem Solving</span>
+            <span>Team Collaboration</span>
+            <span>Communication</span>
+            <span>Adaptability</span>
+            <span>Time Management</span>
+            <span>Attention to Detail</span>
+            <span>Critical Thinking</span>
+            <span>Self-Motivated</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">08 — CONTACT</div>
+    <div class="section-inner">
+      <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+      <p class="contact-sub">Open to opportunities, collaborations, or just a good conversation about tech.</p>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <div>
+              <span class="contact-label">Email</span>
+              <a href="mailto:jericocrisostomo29@gmail.com" class="contact-value">jericocrisostomo29@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">☏</span>
+            <div>
+              <span class="contact-label">Phone</span>
+              <a href="tel:+639175331711" class="contact-value">+63 917 533 1711</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⌘</span>
+            <div>
+              <span class="contact-label">GitHub</span>
+              <a href="https://github.com/jerico-de" class="contact-value" target="_blank">github.com/jerico-de</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">in</span>
+            <div>
+              <span class="contact-label">LinkedIn</span>
+              <a href="https://linkedin.com/in/jerico-crisostomo-5b468238a" class="contact-value" target="_blank">linkedin.com/in/jerico-crisostomo-5b468238a</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-w">Send Message</button>
+          <div class="form-note" id="formNote"></div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & Built by <span class="accent">Jerico Crisostomo</span> &nbsp;·&nbsp; <span id="footer-year"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
