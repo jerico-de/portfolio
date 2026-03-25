@@ -172,3 +172,25 @@ window.addEventListener('scroll', highlightNav);
 // ── Footer year ───────────────────────────────
 const yearEl = document.getElementById('footer-year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ── Lightbox modal ───────────────────────────
+const modal = document.getElementById('lightbox-modal');
+const modalImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.lightbox-close');
+
+// Attach click to all "view certificate" buttons
+document.querySelectorAll('.btn-sm').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const imgSrc = btn.dataset.img; // get image path
+    modal.style.display = 'flex';
+    modalImg.src = imgSrc;
+  });
+});
+
+// Close modal
+closeBtn.onclick = () => modal.style.display = 'none';
+modal.onclick = (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+};

@@ -205,28 +205,6 @@ section:nth-child(even) { background: var(--bg-2); }
   align-items: center;
 }
 
-.photo-decoration {
-  position: absolute;
-  inset: -30px;
-  pointer-events: none;
-}
-.deco-line {
-  position: absolute;
-  background: var(--accent-dim);
-  opacity: 0.5;
-}
-.deco-line.h { height: 1px; width: 60%; left: 20%; top: 50%; }
-.deco-line.v { width: 1px; height: 60%; top: 20%; left: 50%; }
-.deco-corner {
-  position: absolute;
-  width: 20px; height: 20px;
-  border-color: var(--accent);
-  border-style: solid;
-  opacity: 0.7;
-}
-.deco-corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-.deco-corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-
 .photo-ring {
   width: 280px;
   height: 280px;
@@ -526,7 +504,8 @@ section:nth-child(even) { background: var(--bg-2); }
    ============================================= */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 350px));
+  justify-content: center;
   gap: 1.5rem;
 }
 
@@ -718,7 +697,8 @@ section:nth-child(even) { background: var(--bg-2); }
    ============================================= */
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 350px));
+  justify-content: center;
   gap: 1.5rem;
 }
 
@@ -1079,4 +1059,38 @@ footer {
   .projects-grid { grid-template-columns: 1fr; }
   .stack-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
   .photo-ring { width: 220px; height: 220px; }
+}
+
+/* LIGHTBOX */
+/* LIGHTBOX MODAL */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
 }

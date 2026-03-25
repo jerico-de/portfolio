@@ -39,7 +39,6 @@
       <div class="hero-photo-wrap">
         <div class="photo-ring">
           <div class="photo-circle">
-            <!-- Replace assets/profile.jpg with your own photo -->
             <img src="assets/profile.jpg" alt="Profile Photo" onerror="this.style.display='none';this.parentElement.classList.add('no-photo')"/>
             <div class="photo-fallback">
               <span>YOUR<br/>PHOTO</span>
@@ -297,7 +296,7 @@
                     <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
                 </div>
                 <div class="certifications-overlay">
-                    <a href="#" class="btn-sm" target="_blank">View Certificate</a>
+                    <a href="#" class="btn-sm" data-img="assets/cert1.jpg">View Certificate</a>
                 </div>
             </div>
            <div class="certifications-info">
@@ -321,7 +320,7 @@
                     <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
                 </div>
                 <div class="certifications-overlay">
-                    <a href="#" class="btn-sm" target="_blank">View Certificate</a>
+                    <a href="#" class="btn-sm" data-img="assets/cert2.png">View Certificate</a>
                 </div>
             </div>
            <div class="certifications-info">
@@ -510,6 +509,12 @@
       </div>
     </div>
   </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
 
   <!-- FOOTER -->
   <footer>
