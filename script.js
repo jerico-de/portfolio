@@ -179,7 +179,7 @@ const modalImg = document.getElementById('lightbox-img');
 const closeBtn = document.querySelector('.lightbox-close');
 
 // Attach click to all "view certificate" buttons
-document.querySelectorAll('.btn-sm').forEach(btn => {
+document.querySelectorAll('.view-cert-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
 
