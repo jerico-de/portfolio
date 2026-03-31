@@ -45,6 +45,36 @@ function typeLoop() {
 }
 typeLoop();
 
+// ── Stack filter buttons ───────────
+const categoryMap = {
+  stackAll: null,
+  stackFrontend: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript', 'React', 'JQuery'],
+  stackBackend:  ['Node.js', 'Express', 'Java', 'Kotlin', 'AndroidStudio'],
+  stackDatabase: ['MySQL', 'MongoDB'],
+  stackOthers:   ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman'],
+};
+
+const filterBtns = document.querySelectorAll('.stack-filter button');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const category = [...btn.classList].find(c => categoryMap.hasOwnProperty(c));
+    const allowed = categoryMap[category];
+
+    stackItems.forEach(item => {
+      const name = item.dataset.name;
+      const show = !allowed || allowed.includes(name);
+      item.style.opacity   = show ? '1' : '0.15';
+      item.style.transform = show ? 'scale(1)' : 'scale(0.88)';
+      item.style.pointerEvents = show ? 'auto' : 'none';
+    });
+  });
+});
+
 // ── Skill bars — animate on scroll ───────────
 const fills = document.querySelectorAll('.skill-bar-fill');
 let barsAnimated = false;
