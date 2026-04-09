@@ -18,16 +18,16 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// ── Typewriter effect ─────────────────────────
-const roles = ['Web Developer', 'UI/UX Designer', 'Programmer'];
-const el     = document.getElementById('typewriter');
+// ── Typewriter effect (cursor stays inline) ───
+const roles   = ['Web Developer', 'UI/UX Designer', 'Programmer'];
+const twEl    = document.getElementById('typewriter');
 let   roleIdx = 0, charIdx = 0, deleting = false;
 
 function typeLoop() {
   const current = roles[roleIdx];
 
   if (!deleting) {
-    el.textContent = current.slice(0, ++charIdx);
+    twEl.textContent = current.slice(0, ++charIdx);
     if (charIdx === current.length) {
       deleting = true;
       setTimeout(typeLoop, 1800);
@@ -35,19 +35,19 @@ function typeLoop() {
     }
     setTimeout(typeLoop, 80);
   } else {
-    el.textContent = current.slice(0, --charIdx);
+    twEl.textContent = current.slice(0, --charIdx);
     if (charIdx === 0) {
-      deleting  = false;
-      roleIdx   = (roleIdx + 1) % roles.length;
+      deleting = false;
+      roleIdx  = (roleIdx + 1) % roles.length;
     }
     setTimeout(typeLoop, deleting ? 45 : 120);
   }
 }
 typeLoop();
 
-// ── Stack filter buttons ───────────
+// ── Stack filter buttons ───────────────────────
 const categoryMap = {
-  stackAll: null,
+  stackAll:      null,
   stackFrontend: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript', 'React', 'JQuery'],
   stackBackend:  ['Node.js', 'Express', 'Java', 'Kotlin', 'AndroidStudio'],
   stackDatabase: ['MySQL', 'MongoDB'],
@@ -55,29 +55,28 @@ const categoryMap = {
 };
 
 const filterBtns = document.querySelectorAll('.stack-filter button');
+const stackItems = document.querySelectorAll('.stack-item');
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     const category = [...btn.classList].find(c => categoryMap.hasOwnProperty(c));
-    const allowed = categoryMap[category];
+    const allowed  = categoryMap[category];
 
     stackItems.forEach(item => {
-      const name = item.dataset.name;
-      const show = !allowed || allowed.includes(name);
-      item.style.opacity   = show ? '1' : '0.15';
-      item.style.transform = show ? 'scale(1)' : 'scale(0.88)';
+      const show = !allowed || allowed.includes(item.dataset.name);
+      item.style.opacity       = show ? '1'    : '0.15';
+      item.style.transform     = show ? 'scale(1)' : 'scale(0.88)';
       item.style.pointerEvents = show ? 'auto' : 'none';
     });
   });
 });
 
 // ── Skill bars — animate on scroll ───────────
-const fills = document.querySelectorAll('.skill-bar-fill');
-let barsAnimated = false;
+const fills        = document.querySelectorAll('.skill-bar-fill');
+let   barsAnimated = false;
 
 const observeBars = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -93,26 +92,75 @@ const observeBars = new IntersectionObserver(entries => {
 const skillsSection = document.getElementById('skills');
 if (skillsSection) observeBars.observe(skillsSection);
 
-// ── Fade-in on scroll (sections) ─────────────
-const fadeEls = document.querySelectorAll(
-  '.about-content, .stack-grid, .projects-grid, .certifications-grid,.timeline, .skills-wrap, .contact-grid'
-);
+// ── Enhanced scroll reveal ────────────────────
+// Assign reveal classes dynamically for richer animations
+function assignRevealClasses() {
+  // Section titles — slide up
+  document.querySelectorAll('.section-title').forEach((el, i) => {
+    el.classList.add('reveal-up');
+  });
 
-const observeFade = new IntersectionObserver(entries => {
+  // Stat boxes — scale in with stagger
+  document.querySelectorAll('.stat-box').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // About text — slide up
+  document.querySelectorAll('.about-text p').forEach((el, i) => {
+    el.classList.add('reveal-up');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // Project cards — scale + stagger
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // Certification cards — scale + stagger
+  document.querySelectorAll('.certifications-card').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // Soft skill tags — stagger
+  document.querySelectorAll('.soft-skills span').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // Contact items — slide from left
+  document.querySelectorAll('.contact-item').forEach((el, i) => {
+    el.classList.add('reveal-left');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+
+  // Contact form — slide up
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) contactForm.classList.add('reveal-up');
+
+  // Skill categories — stagger up
+  document.querySelectorAll('.skill-category').forEach((el, i) => {
+    el.classList.add('reveal-up');
+    el.classList.add(`delay-${(i % 6) + 1}`);
+  });
+}
+
+assignRevealClasses();
+
+// Single IntersectionObserver for all .reveal-* elements
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity    = '1';
-      entry.target.style.transform  = 'translateY(0)';
-      observeFade.unobserve(entry.target);
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.12 });
 
-fadeEls.forEach(el => {
-  el.style.opacity   = '0';
-  el.style.transform = 'translateY(28px)';
-  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-  observeFade.observe(el);
+document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale').forEach(el => {
+  revealObserver.observe(el);
 });
 
 // ── Timeline items stagger ────────────────────
@@ -121,8 +169,8 @@ const observeTL = new IntersectionObserver(entries => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
       entry.target.style.transitionDelay = `${i * 0.12}s`;
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateX(0)';
+      entry.target.style.opacity         = '1';
+      entry.target.style.transform       = 'translateX(0)';
       observeTL.unobserve(entry.target);
     }
   });
@@ -135,34 +183,46 @@ timelineItems.forEach(item => {
   observeTL.observe(item);
 });
 
-// ── Stack items stagger ───────────────────────
-const stackItems = document.querySelectorAll('.stack-item');
+// ── Stack items stagger on enter ──────────────
 const observeStack = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     stackItems.forEach((item, i) => {
-      item.style.transitionDelay = `${i * 0.06}s`;
+      item.style.transitionDelay = `${i * 0.05}s`;
       item.style.opacity         = '1';
       item.style.transform       = 'scale(1)';
     });
     observeStack.disconnect();
   }
-}, { threshold: 0.15 });
+}, { threshold: 0.1 });
 
 stackItems.forEach(item => {
   item.style.opacity   = '0';
   item.style.transform = 'scale(0.88)';
-  item.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+  item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
 });
 const stackGrid = document.querySelector('.stack-grid');
 if (stackGrid) observeStack.observe(stackGrid);
 
-// ── Contact form ──────────────────────────────
+// ── Contact form — EmailJS ─────────────────────
+// HOW TO SET UP EmailJS (free):
+// 1. Sign up at https://www.emailjs.com
+// 2. Create an Email Service (Gmail, Outlook, etc.)
+// 3. Create an Email Template — use variables: {{from_name}}, {{from_email}}, {{message}}
+// 4. Copy your Public Key, Service ID, and Template ID below
+// 5. Uncomment the emailjs.init() line and replace the placeholders
+
+const EMAILJS_PUBLIC_KEY  = '7YlXc7p91ewwHqbng';   // e.g. 'abc123XYZ'
+const EMAILJS_SERVICE_ID  = 'service_mgppn6f';   // e.g. 'service_xxxxx'
+const EMAILJS_TEMPLATE_ID = 'template_duiw0h4';  // e.g. 'template_xxxxx'
+
 const form     = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+
     const name  = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const msg   = document.getElementById('message').value.trim();
@@ -173,17 +233,59 @@ if (form) {
       return;
     }
 
-    // Simulate send (replace with real fetch/emailJS/formspree)
-    formNote.textContent = '✓ Message sent! I\'ll get back to you soon.';
-    formNote.style.color = 'var(--accent)';
-    form.reset();
+    // ── Check if EmailJS keys are configured ──
+    const keysConfigured =
+      EMAILJS_PUBLIC_KEY  !== 'YOUR_PUBLIC_KEY' &&
+      EMAILJS_SERVICE_ID  !== 'YOUR_SERVICE_ID' &&
+      EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID';
 
-    setTimeout(() => { formNote.textContent = ''; }, 5000);
+    if (!keysConfigured) {
+      // Fallback: open default mail client
+      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+      const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:jericocrisostomo29@gmail.com?subject=${subject}&body=${body}`;
+
+      formNote.textContent = '✓ Opening your mail app…';
+      formNote.style.color = 'var(--accent)';
+      form.reset();
+      setTimeout(() => { formNote.textContent = ''; }, 5000);
+      return;
+    }
+
+    // ── Send via EmailJS ──────────────────────
+    if (typeof emailjs === 'undefined') {
+      formNote.textContent = '⚠ Email service not loaded. Please try again.';
+      formNote.style.color = '#e05252';
+      return;
+    }
+
+    submitBtn.textContent = 'Sending…';
+    submitBtn.classList.add('sending');
+    formNote.textContent = '';
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        { from_name: name, from_email: email, message: msg, reply_to: email }
+      );
+      formNote.textContent = '✓ Message sent! I\'ll get back to you soon.';
+      formNote.style.color = 'var(--accent)';
+      form.reset();
+    } catch (err) {
+      formNote.textContent = '⚠ Something went wrong. Please email me directly.';
+      formNote.style.color = '#e05252';
+      console.error('EmailJS error:', err);
+    } finally {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.classList.remove('sending');
+      setTimeout(() => { formNote.textContent = ''; }, 6000);
+    }
   });
 }
 
 // ── Active nav link on scroll ─────────────────
-const sections  = document.querySelectorAll('section[id]');
+const sections   = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 
 const highlightNav = () => {
@@ -203,24 +305,18 @@ window.addEventListener('scroll', highlightNav);
 const yearEl = document.getElementById('footer-year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ── Lightbox modal ───────────────────────────
-const modal = document.getElementById('lightbox-modal');
+// ── Lightbox modal ────────────────────────────
+const modal    = document.getElementById('lightbox-modal');
 const modalImg = document.getElementById('lightbox-img');
 const closeBtn = document.querySelector('.lightbox-close');
 
-// Attach click to all "view certificate" buttons
 document.querySelectorAll('.view-cert-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('click', e => {
     e.preventDefault();
-
-    const imgSrc = btn.dataset.img; // get image path
+    modalImg.src = btn.dataset.img;
     modal.style.display = 'flex';
-    modalImg.src = imgSrc;
   });
 });
 
-// Close modal
-closeBtn.onclick = () => modal.style.display = 'none';
-modal.onclick = (e) => {
-  if (e.target === modal) modal.style.display = 'none';
-};
+closeBtn.onclick = () => { modal.style.display = 'none'; };
+modal.onclick    = e => { if (e.target === modal) modal.style.display = 'none'; };
