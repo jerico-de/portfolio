@@ -149,7 +149,6 @@ function assignRevealClasses() {
 
 assignRevealClasses();
 
-// Single IntersectionObserver for all .reveal-* elements
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -203,17 +202,9 @@ stackItems.forEach(item => {
 const stackGrid = document.querySelector('.stack-grid');
 if (stackGrid) observeStack.observe(stackGrid);
 
-// ── Contact form — EmailJS ─────────────────────
-// HOW TO SET UP EmailJS (free):
-// 1. Sign up at https://www.emailjs.com
-// 2. Create an Email Service (Gmail, Outlook, etc.)
-// 3. Create an Email Template — use variables: {{from_name}}, {{from_email}}, {{message}}
-// 4. Copy your Public Key, Service ID, and Template ID below
-// 5. Uncomment the emailjs.init() line and replace the placeholders
-
-const EMAILJS_PUBLIC_KEY  = '7YlXc7p91ewwHqbng';   // e.g. 'abc123XYZ'
-const EMAILJS_SERVICE_ID  = 'service_mgppn6f';   // e.g. 'service_xxxxx'
-const EMAILJS_TEMPLATE_ID = 'template_duiw0h4';  // e.g. 'template_xxxxx'
+const EMAILJS_PUBLIC_KEY  = '7YlXc7p91ewwHqbng'; 
+const EMAILJS_SERVICE_ID  = 'service_mgppn6f';  
+const EMAILJS_TEMPLATE_ID = 'template_duiw0h4'; 
 
 const form     = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
@@ -233,14 +224,12 @@ if (form) {
       return;
     }
 
-    // ── Check if EmailJS keys are configured ──
     const keysConfigured =
       EMAILJS_PUBLIC_KEY  !== 'YOUR_PUBLIC_KEY' &&
       EMAILJS_SERVICE_ID  !== 'YOUR_SERVICE_ID' &&
       EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID';
 
     if (!keysConfigured) {
-      // Fallback: open default mail client
       const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
       const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
       window.location.href = `mailto:jericocrisostomo29@gmail.com?subject=${subject}&body=${body}`;
