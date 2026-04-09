@@ -11,9 +11,9 @@
   --text:       #d4d6d9;
   --text-dim:   #c7c7c7;
   --text-faint: #9b9b9b;
-  --accent:     #e8a838;
-  --accent-dim: #b07820;
-  --accent-glow:#e8a83830;
+  --accent:     #2e8ee7;
+  --accent-dim: #124b80;
+  --accent-glow:#10488830;
   --white:      #f0f1f2;
 
   --mono: 'Share Tech Mono', monospace;
@@ -339,7 +339,7 @@ section:nth-child(even) { background: var(--bg-2); }
   transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 .btn-primary:hover {
-  background: #f0b848;
+  background: #2c7dc9;
   box-shadow: 0 4px 20px var(--accent-glow);
   transform: translateY(-2px);
 }
@@ -376,7 +376,7 @@ section:nth-child(even) { background: var(--bg-2); }
   border-radius: var(--radius);
   transition: background var(--transition);
 }
-.btn-sm:hover { background: #f0b848; }
+.btn-sm:hover { background: #2c7dc9; }
 .btn-sm.outline {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.3);
@@ -398,7 +398,7 @@ section:nth-child(even) { background: var(--bg-2); }
   transition: background var(--transition);
 }
 
-.view-cert-btn:hover { background: #f0b848; }
+.view-cert-btn:hover { background: #2c7dc9; }
 
 /* =============================================
    ABOUT
