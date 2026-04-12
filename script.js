@@ -49,9 +49,10 @@ typeLoop();
 const categoryMap = {
   stackAll:      null,
   stackFrontend: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript', 'React', 'JQuery'],
-  stackBackend:  ['Node.js', 'Express', 'Java', 'Kotlin', 'AndroidStudio'],
-  stackDatabase: ['MySQL', 'MongoDB'],
-  stackOthers:   ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman'],
+  stackBackend:  ['Node.js', 'Express', 'Java', 'JavaScript'],
+  stackMobile:   ['AndroidStudio', 'Kotlin', 'Compose'],
+  stackDatabase: ['MySQL', 'MongoDB', 'PostgreSQL'],
+  stackTools:   ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman', 'Supabase', 'Git'],
 };
 
 const filterBtns = document.querySelectorAll('.stack-filter button');
@@ -73,24 +74,6 @@ filterBtns.forEach(btn => {
     });
   });
 });
-
-// ── Skill bars — animate on scroll ───────────
-const fills        = document.querySelectorAll('.skill-bar-fill');
-let   barsAnimated = false;
-
-const observeBars = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !barsAnimated) {
-      barsAnimated = true;
-      fills.forEach(fill => {
-        fill.style.width = fill.dataset.width + '%';
-      });
-    }
-  });
-}, { threshold: 0.3 });
-
-const skillsSection = document.getElementById('skills');
-if (skillsSection) observeBars.observe(skillsSection);
 
 // ── Enhanced scroll reveal ────────────────────
 // Assign reveal classes dynamically for richer animations
