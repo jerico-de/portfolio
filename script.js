@@ -52,7 +52,7 @@ const categoryMap = {
   stackBackend:  ['Node.js', 'Express', 'Java', 'JavaScript'],
   stackMobile:   ['AndroidStudio', 'Kotlin', 'Compose'],
   stackDatabase: ['MySQL', 'MongoDB', 'PostgreSQL'],
-  stackTools:   ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman', 'Supabase', 'Git', 'Vercel'],
+  stackTools:   ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman', 'Supabase', 'Git', 'Vercel', 'Firebase'],
 };
 
 const filterBtns = document.querySelectorAll('.stack-filter button');
