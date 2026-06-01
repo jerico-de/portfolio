@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,6 +16,10 @@
 </head>
 <body>
 
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+
   <!-- NAV -->
   <nav id="navbar">
     <div class="nav-logo">JC<span class="accent">.</span></div>
@@ -30,8 +34,14 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon theme-icon-dark">☀</span>
+        <span class="theme-icon theme-icon-light">☾</span>
+      </button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </nav>
 
@@ -69,7 +79,10 @@
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn-primary">Get In Touch</a>
-          <a href="#projects" class="btn-outline">View Work</a>
+          <a href="assets/Jerico_Crisostomo_Resume.pdf" class="btn-outline" download="Jerico_Crisostomo_Resume.pdf">
+            <span class="btn-dl-icon">↓</span> Download CV
+          </a>
+          <a href="#projects" class="btn-ghost">View Work</a>
         </div>
       </div>
     </div>
@@ -253,19 +266,21 @@
 
         <div class="project-card">
           <div class="project-preview">
-            <img src="assets/project1.png" alt="Project 1" onerror="this.style.display='none'"/>
+            <img src="assets/bawz-website.png" alt="Project 1" onerror="this.style.display='none'"/>
             <div class="project-preview-fallback">
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <a href="https://jerico-de.github.io/bawz-website/" class="btn-sm" target="_blank">Live Demo</a>
+              <button class="btn-sm" onclick="openDemo('assets/bawz-website-demo.mp4')">▶ Demo</button>
+              <a href="https://jerico-de.github.io/bawz-website/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
           <div class="project-info">
             <h3 class="project-title">Bawz Website</h3>
-            <p class="project-desc">Bawz is a dance team based in the Philippines. This project invovles creating a modern, 
+            <span class="tl-badge">Personal Project</span>
+            <p class="project-desc">Bawz is a dance team based in the Philippines. This project involves creating a modern, 
                 responsive website to showcase the team's events, gigs, and achievements. It features a clean design, smooth animations, 
-                and user-friendly. It can also be used to contact the team for gig inquries and provide information about the 
+                and user-friendly layout. It can also be used to contact the team for gig inquiries and provide information about the 
                 team's activities.</p>
             <div class="project-tags">
               <span>HTML</span>
@@ -278,21 +293,21 @@
 
         <div class="project-card">
           <div class="project-preview">
-            <img src="assets/project2-new.png" alt="Project 2" onerror="this.style.display='none'"/>
+            <img src="assets/the-hungry-paws-website.png" alt="Project 2" onerror="this.style.display='none'"/>
             <div class="project-preview-fallback">
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <a href="https://the-hungry-paws-website-v2.onrender.com/" class="btn-sm" target="_blank">Live Demo</a>
+              <button class="btn-sm" onclick="openDemo('assets/the-hungry-paws-demo.mp4')">▶ Demo</button>
+              <a href="https://the-hungry-paws-website-v2.onrender.com/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
           <div class="project-info">
             <h3 class="project-title">The Hungry Paws Website</h3>
-            <span class="tl-badge">Work In Progress</span>
+            <span class="tl-badge">School Project</span>
             <p class="project-desc">The Hungry Paws is a one-stop shop for pet supplies, pet grooming, and pet hotel. This website provides 
-                a seamless online experience for pet owners to book for a grooming session or stay at the pet hotel. The website features a modern 
-                design, responsive layout, and has Google Authentication. Users may sign up or log in for better user experience. Pet owners may add 
-                their pet, pet information, book appointments, and monitor booking status.</p>
+                a seamless online experience for pet owners to book a grooming session or stay at the pet hotel. The website features a modern 
+                design, responsive layout, and Google Authentication. Users may sign up or log in for a better experience, add their pet, book appointments, and monitor booking status.</p>
             <div class="project-tags">
               <span>JavaScript</span>
               <span>Node.js</span>
@@ -312,15 +327,16 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <a href="https://mnla-jerico.netlify.app/" class="btn-sm" target="_blank">Live Demo</a>
+              <button class="btn-sm" onclick="openDemo('assets/mnla-demo.mp4')">▶ Demo</button>
+              <a href="https://mnla-jerico.netlify.app/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
           <div class="project-info">
             <h3 class="project-title">MN+LA Redesigned Website</h3>
-            <span class="tl-badge">Frontend</span>
+            <span class="tl-badge">Personal Project</span>
             <p class="project-desc">MN+LA is a local clothing brand featuring modern designs and high-quality materials. This project involved 
               redesigning their existing website to better showcase their products, collections, and brand insights. The project features a modern, 
-              responsive design with add to cart functionality.</p>
+              responsive design with add-to-cart functionality.</p>
             <div class="project-tags">
               <span>HTML</span>
               <span>CSS</span>
@@ -328,6 +344,60 @@
               <span>React</span>
               <span>GitHub</span>
               <span>Netlify</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">
+            <img src="assets/bawz-complex.png" alt="Project 4" onerror="this.style.display='none'"/>
+            <div class="project-preview-fallback">
+              <span class="preview-placeholder">PROJECT PREVIEW</span>
+            </div>
+            <div class="project-overlay">
+              <button class="btn-sm" onclick="openDemo('assets/bawz-complex-linktree-demo.mp4')">▶ Demo</button>
+              <a href="https://bawz-complex.vercel.app/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Bawz Complex Linktree</h3>
+            <span class="tl-badge">Commissioned Project</span>
+            <p class="project-desc">Bawz Complex is a dance studio in the Philippines offering various dance classes. The linktree website
+              serves as a centralized hub for all of Bawz Complex's online presence, including social media profiles, class registrations, class videos, rules and guidelines,
+              and contact information. Features a modern design with smooth animations, responsive layout, and a backend admin dashboard for content management.</p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>GitHub</span>
+              <span>Vercel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">
+            <img src="assets/studio-ledger.png" alt="Project 5" onerror="this.style.display='none'"/>
+            <div class="project-preview-fallback">
+              <span class="preview-placeholder">PROJECT PREVIEW</span>
+            </div>
+            <div class="project-overlay">
+              <button class="btn-sm" onclick="openDemo('assets/studio-ledger-demo.mp4')">▶ Demo</button>
+              <a href="https://studio-ledger-dy6e.onrender.com/login" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Studio Ledger</h3>
+            <span class="tl-badge">Personal Project</span>
+            <p class="project-desc">Studio Ledger is a financial management tool designed for dance studios. It provides a streamlined way to track income, expenses, and student payments. Features secure authentication, a clean dashboard for financial overview, and tools to manage studio finances effectively.</p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Node.js</span>
+              <span>GitHub</span>
+              <span>Vercel</span>
             </div>
           </div>
         </div>
@@ -401,7 +471,7 @@
                     <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
                 </div>
                 <div class="certifications-overlay">
-                    <a href="#" class="view-cert-btn" data-img="assets/cert1.jpg">View Certificate</a>
+                    <a href="#" class="btn-sm view-cert-btn" data-img="assets/cert1.jpg">View Certificate</a>
                 </div>
             </div>
            <div class="certifications-info">
@@ -425,7 +495,7 @@
                     <span class="preview-placeholder">CERTIFICATION PREVIEW</span>
                 </div>
                 <div class="certifications-overlay">
-                    <a href="#" class="view-cert-btn" data-img="assets/cert2.png">View Certificate</a>
+                    <a href="#" class="btn-sm view-cert-btn" data-img="assets/cert2.png">View Certificate</a>
                 </div>
             </div>
            <div class="certifications-info">
@@ -624,6 +694,17 @@
     <span class="lightbox-close">&times;</span>
     <img class="lightbox-content" id="lightbox-img">
   </div>
+
+  <!-- Demo Modal -->
+   <div id="demoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeDemo()">&times;</span>
+        <video id="demoVideo" controls width="100%">
+          <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
 
   <!-- FOOTER -->
   <footer>
