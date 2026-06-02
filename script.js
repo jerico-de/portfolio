@@ -322,10 +322,11 @@ lbClose.onclick = () => { lbModal.style.display = 'none'; };
 lbModal.onclick = e => { if (e.target === lbModal) lbModal.style.display = 'none'; };
 
 // ── Demo modal ────────────────────────────────
-function openDemo(videoPath) {
+function openDemo(videoPath, posterPath = '') {
   const modal  = document.getElementById('demoModal');
   const video  = document.getElementById('demoVideo');
   const source = document.getElementById('videoSource');
+  video.poster = posterPath || '';
   source.src = videoPath;
   video.load();
   modal.classList.add('open');
@@ -337,6 +338,7 @@ function closeDemo() {
   const video = document.getElementById('demoVideo');
   video.pause();
   video.currentTime = 0;
+  video.poster = '';
   modal.classList.remove('open');
   document.body.style.overflow = '';
 }
