@@ -345,3 +345,54 @@ window.addEventListener('click', function(e) {
   const modal = document.getElementById('demoModal');
   if (e.target === modal) closeDemo();
 });
+
+// ── CV Dropdown ───────────────────────────────
+const cvDropdown = document.getElementById('cvDropdown');
+const cvTrigger  = document.getElementById('cvTrigger');
+
+if (cvTrigger && cvDropdown) {
+  cvTrigger.addEventListener('click', e => {
+    e.stopPropagation();
+    cvDropdown.classList.toggle('open');
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', e => {
+    if (!cvDropdown.contains(e.target)) {
+      cvDropdown.classList.remove('open');
+    }
+  });
+
+  // Close when pressing Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') cvDropdown.classList.remove('open');
+  });
+}
+
+// ── CV Preview Modal ──────────────────────────
+function openCVModal() {
+  const modal  = document.getElementById('cvModal');
+  const obj    = document.getElementById('cvObject');
+  const frame  = document.getElementById('cvFrame');
+  const pdfSrc = 'assets/Jerico_Crisostomo_Resume.pdf#toolbar=1&view=FitH';
+  obj.data  = pdfSrc;
+  frame.src = pdfSrc;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('cvDropdown').classList.remove('open');
+}
+
+function closeCVModal() {
+  const modal = document.getElementById('cvModal');
+  const obj   = document.getElementById('cvObject');
+  const frame = document.getElementById('cvFrame');
+  modal.classList.remove('open');
+  obj.data  = '';
+  frame.src = '';
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('click', e => {
+  const cvModal = document.getElementById('cvModal');
+  if (e.target === cvModal) closeCVModal();
+});
