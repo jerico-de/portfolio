@@ -1,8 +1,4 @@
-/* =============================================
-   PORTFOLIO — INDUSTRIAL DARK THEME
-   ============================================= */
-
-/* ── DARK THEME (default) ── */
+/* ── DARK THEME ── */
 :root,
 [data-theme="dark"] {
   --bg:         #111213;
@@ -108,7 +104,7 @@ ul { list-style: none; }
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 [data-theme="light"] #cursor-glow {
-  background: radial-gradient(circle, rgba(15,82,160,0.09) 0%, rgba(15,82,160,0.025) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(17, 92, 178, 0.258) 0%, rgba(17, 90, 173, 0.025) 50%, transparent 72%);
   mix-blend-mode: multiply;
 }
 
@@ -1549,36 +1545,26 @@ footer {
   left: 0; top: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.88);
+}
+.modal.open {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 .modal-content {
   width: 85%;
   max-width: 960px;
-  margin: 0 auto;
   background: #111;
   position: relative;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   padding: 40px 0 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* 16:9 responsive YouTube wrapper */
-.yt-wrap {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  border-radius: 0 0 var(--radius) var(--radius);
   overflow: hidden;
 }
-.yt-wrap iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border: none;
+.modal-content video {
+  display: block;
+  width: 100%;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .close {

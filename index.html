@@ -122,7 +122,7 @@
             <span class="stat-label">Years Coding</span>
           </div>
           <div class="stat-box">
-            <span class="stat-num">7+</span>
+            <span class="stat-num">10+</span>
             <span class="stat-label">Projects Built</span>
           </div>
         </div>
@@ -216,6 +216,10 @@
           <i class="devicon-vscode-plain colored"></i>
           <span>VSCode</span>
         </div>
+        <div class="stack-item" data-name="Wordpress">
+          <i class="devicon-wordpress-plain"></i>
+          <span>Wordpress</span>
+        </div>
         <div class="stack-item" data-name="Figma">
           <i class="devicon-figma-plain colored"></i>
           <span>Figma</span>
@@ -271,7 +275,7 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <button class="btn-sm" onclick="openDemo('GogeAHdiVRc')">▶ Demo</button>
+              <button class="btn-sm" onclick="openDemo('assets/bawz-website-demo.mp4')">▶ Demo</button>
               <a href="https://jerico-de.github.io/bawz-website/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
@@ -298,7 +302,7 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <button class="btn-sm" onclick="openDemo('crDnN2IVbsM')">▶ Demo</button>
+              <button class="btn-sm" onclick="openDemo('assets/the-hungry-paws-demo.mp4')">▶ Demo</button>
               <a href="https://the-hungry-paws-website-v2.onrender.com/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
@@ -327,7 +331,7 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <button class="btn-sm" onclick="openDemo('qYM3rW1WGQ8')">▶ Demo</button>
+              <button class="btn-sm" onclick="openDemo('assets/mnla-demo.mp4')">▶ Demo</button>
               <a href="https://mnla-jerico.netlify.app/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
@@ -355,7 +359,7 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <button class="btn-sm" onclick="openDemo('lgIgOcNkz5M')">▶ Demo</button>
+              <button class="btn-sm" onclick="openDemo('assets/bawz-complex-linktree-demo.mp4')">▶ Demo</button>
               <a href="https://bawz-complex.vercel.app/" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
@@ -383,14 +387,15 @@
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
             <div class="project-overlay">
-              <button class="btn-sm" onclick="openDemo('Xig3-W58Tx4')">▶ Demo</button>
+              <button class="btn-sm" onclick="openDemo('assets/studio-ledger-demo.mp4')">▶ Demo</button>
               <a href="https://studio-ledger-dy6e.onrender.com/login" class="btn-sm btn-sm-outline" target="_blank">Live ↗</a>
             </div>
           </div>
           <div class="project-info">
             <h3 class="project-title">Studio Ledger</h3>
             <span class="tl-badge">Personal Project</span>
-            <p class="project-desc">Studio Ledger is a financial management tool designed for dance studios. It provides a streamlined way to track income, expenses, and student payments. Features secure authentication, a clean dashboard for financial overview, and tools to manage studio finances effectively.</p>
+            <p class="project-desc">Studio Ledger is a financial management tool designed for dance studios. It provides a streamlined way to track income, expenses, 
+              and student payments. Features secure authentication, a clean dashboard for financial overview, and tools to manage studio finances effectively.</p>
             <div class="project-tags">
               <span>HTML</span>
               <span>CSS</span>
@@ -408,14 +413,13 @@
             <div class="project-preview-fallback">
               <span class="preview-placeholder">PROJECT PREVIEW</span>
             </div>
-            <div class="project-overlay">
-            </div>
           </div>
           <div class="project-info">
-            <h3 class="project-title">KSound PH Website</h3>
+            <h3 class="project-title">KSounnd PH</h3>
             <span class="tl-badge">Commissioned Project</span>
-            <span class="tl-badge">Work in Progress</span>
-            <p class="project-desc">KSound PH is a music production company in the Philippines. The website serves as a platform to showcase their artists, music, videos, and services. It features a modern design with a focus on user experience and beginner-friendly navigation.</p>
+            <span class="tl-badge">Personal Project</span>
+            <p class="project-desc">KSound PH is a music production company based in the Philippines. The website showcases their artists, music, videos, services, 
+              and information. The website features a modern design with smooth animations and a beginner friendly interface.</p>
             <div class="project-tags">
               <span>Wordpress</span>
               <span>Elementor</span>
@@ -717,20 +721,14 @@
     <img class="lightbox-content" id="lightbox-img">
   </div>
 
-  <!-- Demo Modal — YouTube embed, no branding -->
+  <!-- Demo Modal -->
   <div id="demoModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeDemo()">&times;</span>
-      <div class="yt-wrap">
-        <iframe
-          id="demoFrame"
-          src=""
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          referrerpolicy="no-referrer"
-        ></iframe>
-      </div>
+      <video id="demoVideo" controls width="100%">
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
 

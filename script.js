@@ -1,9 +1,4 @@
-/* =============================================
-   PORTFOLIO — script.js
-   ============================================= */
-
 // ── Custom cursor ─────────────────────────────
-// Only activate on true pointer/mouse devices, not touch
 const cursorGlow = document.getElementById('cursor-glow');
 const cursorDot  = document.getElementById('cursor-dot');
 
@@ -109,7 +104,7 @@ const categoryMap = {
   stackBackend:  ['Node.js', 'Express', 'Java', 'JavaScript'],
   stackMobile:   ['AndroidStudio', 'Kotlin', 'Compose'],
   stackDatabase: ['MySQL', 'MongoDB', 'PostgreSQL'],
-  stackTools:    ['Netbeans', 'VSCode', 'Figma', 'Github', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman', 'Supabase', 'Git', 'Vercel', 'Firebase'],
+  stackTools:    ['Netbeans', 'VSCode', 'Figma', 'Github', 'Wordpress', 'Netlify', 'AmazonWebServices', 'AWS', 'Postman', 'Supabase', 'Git', 'Vercel', 'Firebase'],
 };
 
 const filterBtns = document.querySelectorAll('.stack-filter button');
@@ -326,21 +321,23 @@ document.querySelectorAll('.view-cert-btn').forEach(btn => {
 lbClose.onclick = () => { lbModal.style.display = 'none'; };
 lbModal.onclick = e => { if (e.target === lbModal) lbModal.style.display = 'none'; };
 
-// ── Demo modal — YouTube embed ─────────────────
-function openDemo(videoId) {
-  const modal = document.getElementById('demoModal');
-  const frame = document.getElementById('demoFrame');
-  // ?autoplay=1&rel=0&modestbranding=1 — suppress branding as much as possible
-  frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
-  modal.style.display = 'flex';
+// ── Demo modal ────────────────────────────────
+function openDemo(videoPath) {
+  const modal  = document.getElementById('demoModal');
+  const video  = document.getElementById('demoVideo');
+  const source = document.getElementById('videoSource');
+  source.src = videoPath;
+  video.load();
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeDemo() {
   const modal = document.getElementById('demoModal');
-  const frame = document.getElementById('demoFrame');
-  frame.src = ''; // stops video playback
-  modal.style.display = 'none';
+  const video = document.getElementById('demoVideo');
+  video.pause();
+  video.currentTime = 0;
+  modal.classList.remove('open');
   document.body.style.overflow = '';
 }
 
