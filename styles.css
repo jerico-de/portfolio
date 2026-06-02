@@ -24,12 +24,12 @@
 
 /* ── LIGHT THEME ── */
 [data-theme="light"] {
-  --bg:         #e2e5eb;
-  --bg-2:       #d0d5df;
+  --bg:         #e9ecf2;
+  --bg-2:       #dde2ec;
   --bg-3:       #f2f4f8;
-  --border:     #a5aec2;
-  --border-2:   #8590a7;
-  --text:       #232941;
+  --border:     #bcc4d4;
+  --border-2:   #98a4bc;
+  --text:       #1a1e2e;
   --text-dim:   #3a4260;
   --text-faint: #6a738f;
   --accent:     #0f52a0;
@@ -60,20 +60,23 @@ body {
   font-weight: 300;
   line-height: 1.7;
   overflow-x: hidden;
+  cursor: none;
 }
+/* Force cursor:none everywhere — no pointer bleed-through */
+*, *::before, *::after { cursor: none !important; }
+/* Exception: text inputs still need a text cursor feel but no pointer */
+input, textarea { cursor: none !important; }
+
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
 
-html,
-body,
-a,
-button,
-input,
-textarea,
-select,
-* {
-  cursor: none !important;
+/* Touch / mobile — restore normal cursor, hide custom elements */
+@media (pointer: coarse) {
+  *, *::before, *::after { cursor: auto !important; }
+  input, textarea { cursor: text !important; }
+  body { cursor: auto; }
+  #cursor-dot, #cursor-glow { display: none !important; }
 }
 
 /* SCROLLBAR */
@@ -93,8 +96,8 @@ select,
   position: fixed;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(46,142,231,0.11) 0%, rgba(46,142,231,0.03) 50%, transparent 72%);
   pointer-events: none;
@@ -105,7 +108,7 @@ select,
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 [data-theme="light"] #cursor-glow {
-  background: radial-gradient(circle, rgba(15, 83, 160, 0.233) 0%, rgba(15, 83, 160, 0.075) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(15,82,160,0.09) 0%, rgba(15,82,160,0.025) 50%, transparent 72%);
   mix-blend-mode: multiply;
 }
 
@@ -820,29 +823,30 @@ section:nth-child(even)::after {
    PROJECTS
    ============================================= */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
 }
+.projects-grid .project-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 300px;
+  max-width: 380px;
+}
 
-/* Uniform card hover — full accent outline + scale up */
+/* Full card scales — accent outline wraps whole card */
 .project-card {
   background: var(--bg-3);
   border: 2px solid var(--border);
   border-radius: var(--radius);
-  overflow: visible;
+  overflow: hidden;
   position: relative;
+  transform-origin: center center;
   transition:
     border-color var(--transition),
     transform var(--transition),
     box-shadow var(--transition);
   box-shadow: var(--shadow-card);
-}
-/* clip inner content (image) without clipping the outline */
-.project-card > .project-preview {
-  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
-  overflow: hidden;
 }
 .project-card:hover {
   border-color: var(--accent);
@@ -850,6 +854,8 @@ section:nth-child(even)::after {
   box-shadow:
     0 0 0 1px var(--accent),
     0 12px 40px rgba(46,142,231,0.22);
+  z-index: 2;
+  position: relative;
 }
 
 .project-preview {
@@ -1032,26 +1038,28 @@ section:nth-child(even)::after {
    CERTIFICATIONS
    ============================================= */
 .certifications-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 350px));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
+}
+.certifications-grid .certifications-card {
+  flex: 0 0 340px;
+  min-width: 300px;
+  max-width: 380px;
 }
 
 .certifications-card {
   background: var(--bg-3);
   border: 2px solid var(--border);
   border-radius: var(--radius);
-  overflow: visible;
+  overflow: hidden;
   box-shadow: var(--shadow-card);
+  transform-origin: center center;
   transition:
     border-color var(--transition),
     transform var(--transition),
     box-shadow var(--transition);
-}
-.certifications-card > .certifications-preview {
-  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
-  overflow: hidden;
 }
 .certifications-card:hover {
   border-color: var(--accent);
@@ -1059,6 +1067,8 @@ section:nth-child(even)::after {
   box-shadow:
     0 0 0 1px var(--accent),
     0 12px 40px rgba(46,142,231,0.22);
+  z-index: 2;
+  position: relative;
 }
 
 .certifications-preview {
@@ -1491,7 +1501,8 @@ footer {
   .section-inner { padding: 0 1.2rem; }
   #hero { padding: 80px 1.2rem 60px; }
   #navbar { padding: 0 1.2rem; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid .project-card { flex: 0 0 100%; max-width: 100%; min-width: unset; }
+  .certifications-grid .certifications-card { flex: 0 0 100%; max-width: 100%; min-width: unset; }
   .stack-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
   .photo-ring { width: 220px; height: 220px; }
   .hero-cta { flex-direction: column; align-items: center; }
@@ -1537,25 +1548,46 @@ footer {
   z-index: 1000;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.88);
+  align-items: center;
+  justify-content: center;
 }
 .modal-content {
-  width: 80%;
-  max-width: 900px;
-  margin: 5% auto;
-  background: #1f2123;
-  padding: 20px;
+  width: 85%;
+  max-width: 960px;
+  margin: 0 auto;
+  background: #111;
   position: relative;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  padding: 40px 0 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
-[data-theme="light"] .modal-content { background: #fff; }
+
+/* 16:9 responsive YouTube wrapper */
+.yt-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+}
+.yt-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
 .close {
   position: absolute;
-  right: 15px; top: 10px;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--text);
+  right: 14px; top: 8px;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #aaa;
   transition: color var(--transition);
+  z-index: 2;
 }
-.close:hover { color: var(--accent); }
+.close:hover { color: #fff; }

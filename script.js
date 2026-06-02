@@ -3,44 +3,47 @@
    ============================================= */
 
 // ── Custom cursor ─────────────────────────────
+// Only activate on true pointer/mouse devices, not touch
 const cursorGlow = document.getElementById('cursor-glow');
 const cursorDot  = document.getElementById('cursor-dot');
-let mouseX = -999, mouseY = -999;
-let glowX  = -999, glowY  = -999;
 
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  // Dot tracks exactly — no lag
-  cursorDot.style.left = mouseX + 'px';
-  cursorDot.style.top  = mouseY + 'px';
-});
+if (window.matchMedia('(pointer: fine)').matches && cursorDot && cursorGlow) {
+  let mouseX = -999, mouseY = -999;
+  let glowX  = -999, glowY  = -999;
 
-document.addEventListener('mouseleave', () => {
-  cursorDot.style.opacity  = '0';
-  cursorGlow.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  cursorDot.style.opacity  = '1';
-  cursorGlow.style.opacity = '1';
-});
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top  = mouseY + 'px';
+  });
+  document.addEventListener('mouseleave', () => {
+    cursorDot.style.opacity  = '0';
+    cursorGlow.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursorDot.style.opacity  = '1';
+    cursorGlow.style.opacity = '1';
+  });
 
-// Glow orb follows with smooth lerp
-function animateCursor() {
-  glowX += (mouseX - glowX) * 0.10;
-  glowY += (mouseY - glowY) * 0.10;
-  cursorGlow.style.left = glowX + 'px';
-  cursorGlow.style.top  = glowY + 'px';
-  requestAnimationFrame(animateCursor);
+  (function animateCursor() {
+    glowX += (mouseX - glowX) * 0.10;
+    glowY += (mouseY - glowY) * 0.10;
+    cursorGlow.style.left = glowX + 'px';
+    cursorGlow.style.top  = glowY + 'px';
+    requestAnimationFrame(animateCursor);
+  })();
+
+  const hoverSel = 'a, button, .project-card, .certifications-card, .skill-category, .stat-box, .timeline-content, .stack-item';
+  document.querySelectorAll(hoverSel).forEach(el => {
+    el.addEventListener('mouseenter', () => cursorDot.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovered'));
+  });
+} else {
+  // Touch device — hide cursor elements entirely
+  if (cursorDot)  cursorDot.style.display  = 'none';
+  if (cursorGlow) cursorGlow.style.display = 'none';
 }
-animateCursor();
-
-// Hover states — grow dot on interactive elements
-const interactiveEls = 'a, button, .project-card, .certifications-card, .skill-category, .stat-box, .timeline-content, .stack-item, .stack-filter button, .theme-toggle';
-document.querySelectorAll(interactiveEls).forEach(el => {
-  el.addEventListener('mouseenter', () => cursorDot.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovered'));
-});
 
 // ── Dark / Light theme toggle ─────────────────
 const html        = document.documentElement;
@@ -323,25 +326,25 @@ document.querySelectorAll('.view-cert-btn').forEach(btn => {
 lbClose.onclick = () => { lbModal.style.display = 'none'; };
 lbModal.onclick = e => { if (e.target === lbModal) lbModal.style.display = 'none'; };
 
-// ── Demo modal ────────────────────────────────
-function openDemo(videoPath) {
-  const modal  = document.getElementById('demoModal');
-  const video  = document.getElementById('demoVideo');
-  const source = document.getElementById('videoSource');
-  source.src = videoPath;
-  video.load();
-  modal.style.display = 'block';
+// ── Demo modal — YouTube embed ─────────────────
+function openDemo(videoId) {
+  const modal = document.getElementById('demoModal');
+  const frame = document.getElementById('demoFrame');
+  // ?autoplay=1&rel=0&modestbranding=1 — suppress branding as much as possible
+  frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeDemo() {
   const modal = document.getElementById('demoModal');
-  const video = document.getElementById('demoVideo');
-  video.pause();
-  video.currentTime = 0;
+  const frame = document.getElementById('demoFrame');
+  frame.src = ''; // stops video playback
   modal.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function(e) {
   const modal = document.getElementById('demoModal');
-  if (event.target === modal) closeDemo();
+  if (e.target === modal) closeDemo();
 });
