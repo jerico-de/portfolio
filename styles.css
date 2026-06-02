@@ -92,10 +92,10 @@ ul { list-style: none; }
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46,142,231,0.11) 0%, rgba(46,142,231,0.03) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(32, 100, 163, 0.219) 0%, rgba(46,142,231,0.03) 50%, transparent 72%);
   pointer-events: none;
   z-index: 9997;
   transform: translate(-50%, -50%);
@@ -104,7 +104,7 @@ ul { list-style: none; }
   transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 [data-theme="light"] #cursor-glow {
-  background: radial-gradient(circle, rgba(17, 92, 178, 0.258) 0%, rgba(17, 90, 173, 0.025) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(17, 92, 178, 0.258) 0%, rgba(17, 90, 173, 0.075) 50%, transparent 72%);
   mix-blend-mode: multiply;
 }
 
@@ -844,9 +844,12 @@ section:nth-child(even)::after {
     box-shadow var(--transition);
   box-shadow: var(--shadow-card);
 }
-.project-card:hover {
+
+.project-card:hover,
+.project-card.reveal-scale:hover,
+.project-card.reveal-scale.visible:hover {
   border-color: var(--accent);
-  transform: scale(1.03);
+  transform: scale(1.03) !important;
   box-shadow:
     0 0 0 1px var(--accent),
     0 12px 40px rgba(46,142,231,0.22);
@@ -860,6 +863,7 @@ section:nth-child(even)::after {
   overflow: hidden;
   background: var(--bg);
 }
+
 .project-preview img {
   width: 100%;
   height: 100%;
@@ -1057,9 +1061,12 @@ section:nth-child(even)::after {
     transform var(--transition),
     box-shadow var(--transition);
 }
-.certifications-card:hover {
+
+.certifications-card:hover,
+.certifications-card.reveal-scale:hover,
+.certifications-card.reveal-scale.visible:hover {
   border-color: var(--accent);
-  transform: scale(1.03);
+  transform: scale(1.03) !important;
   box-shadow:
     0 0 0 1px var(--accent),
     0 12px 40px rgba(46,142,231,0.22);
@@ -1181,6 +1188,19 @@ section:nth-child(even)::after {
   border-color: var(--border-2);
   border-left-color: var(--accent);
   transform: translateX(6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.skill-category {
+  transition: border-color var(--transition), border-left-color var(--transition),
+              transform var(--transition), box-shadow var(--transition);
+}
+
+.skill-category:hover,
+.skill-category.reveal-up.visible:hover {
+  border-color: var(--border-2);
+  border-left-color: var(--accent);
+  transform: translateX(6px) !important;
   box-shadow: var(--shadow-hover);
 }
 
@@ -1438,6 +1458,11 @@ footer {
 .reveal-scale.visible {
   opacity: 1;
   transform: scale(1);
+}
+
+.reveal-scale.visible,
+.reveal-up.visible {
+  transition: opacity 0.55s ease, transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 /* Stagger delay helpers */

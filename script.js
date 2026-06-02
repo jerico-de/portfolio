@@ -141,11 +141,11 @@ function assignRevealClasses() {
     el.classList.add(`delay-${(i % 6) + 1}`);
   });
   document.querySelectorAll('.project-card').forEach((el, i) => {
-    el.classList.add('reveal-scale');
+    el.classList.add('reveal-up');
     el.classList.add(`delay-${(i % 6) + 1}`);
   });
   document.querySelectorAll('.certifications-card').forEach((el, i) => {
-    el.classList.add('reveal-scale');
+    el.classList.add('reveal-up');
     el.classList.add(`delay-${(i % 6) + 1}`);
   });
   document.querySelectorAll('.contact-item').forEach((el, i) => {
